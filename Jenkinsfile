@@ -39,6 +39,7 @@ pipeline {
           def artifactId = readPom 'project.artifactId'
           def version = readPom 'project.version'
           sh "./deploy.sh ${artifactId} ${version}"
+          currentBuild.description = "Deploy completo do artefato $artifactId na versao $version"
         }
       }
     }
