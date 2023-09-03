@@ -15,20 +15,30 @@ pipeline {
       }
 
       steps {
-        echo 'Stage Clean'
+        sh 'mvn clean'
       }
       
     }
 
     stage('Compile') {
       steps {
-        echo 'Stage Compile'
+        sh 'mvn compile'
       }
     }
 
     stage('Test') {
       steps {
-        echo 'Stage Test'
+        sh 'mvn verify'
+        junit 'target/surefire-reports/*.xml'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        script {
+          def pom = readMavenPom file: 'pom.xml'
+          sh "./deploy.sh ${pom.getArtifactId()} ${pom.getVersion()}"
+        }
       }
     }
 
