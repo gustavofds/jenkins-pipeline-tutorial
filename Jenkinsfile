@@ -48,7 +48,7 @@ pipeline {
 }
 
 def mvn(String args) {
-  sh "mvn --no-progress-transfer -B $args"
+  sh "mvn --no-transfer-progress -B $args"
 }
 
 def readPom(String property) {
