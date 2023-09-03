@@ -7,6 +7,10 @@ pipeline {
     booleanParam name: 'CLEAN_BEFORE_BUILD', description: 'Limpar o workspace antes de rodar o build' 
   }
 
+  environment {
+      MAVEN_OPTS='-XX:TieredStopAtLevel=1 -XX:+UseParallelGC'
+  }
+
   options {
     buildDiscarder logRotator(daysToKeepStr: '7', numToKeepStr: '10')
     disableConcurrentBuilds abortPrevious: true
