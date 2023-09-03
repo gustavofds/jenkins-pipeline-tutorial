@@ -51,6 +51,6 @@ def mvn(String args) {
   sh "mvn --no-transfer-progress -B $args"
 }
 
-def readPom(String property) {
-  return sh script: """mvn help:evaluate -Dexpression="${property}" -q -DforceStdout""", returnStdout: true
+def readPom(String expression) {
+    return sh(script: """mvn help:evaluate -Dexpression="$expression" -q -DforceStdout""", returnStdout: true)
 }
