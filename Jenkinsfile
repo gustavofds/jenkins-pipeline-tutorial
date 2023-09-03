@@ -69,7 +69,9 @@ pipeline {
 
       post {
         success {
-          currentBuild.description = "Deploy completo do artefato $artifactId na versao $version"
+          script {
+            currentBuild.description = "Deploy completo do artefato $artifactId na versao $version"
+          }
         }
       }
     }
